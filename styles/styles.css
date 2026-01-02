@@ -180,3 +180,75 @@ body {
   color: #16a34a;
   font-weight: 600;
 }
+
+
+/* ================= RESPONSIVE DASHBOARD ================= */
+
+/* Tablet & HP (Lebar maksimal 768px) */
+@media screen and (max-width: 768px) {
+    body {
+        flex-direction: column; /* Sidebar pindah ke atas, Main di bawah */
+        height: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar h2 {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .nav {
+        display: flex; /* Menu navigasi jadi berjejer ke samping */
+        justify-content: center;
+        padding: 0;
+    }
+
+    .nav li {
+        padding: 10px 15px;
+        font-size: 14px;
+        flex: 1;
+        text-align: center;
+    }
+
+    .main {
+        padding: 20px;
+    }
+
+    .home {
+        flex-direction: column; /* Tombol Check-in & Out jadi tumpuk atas-bawah */
+        height: auto;
+        gap: 20px;
+        padding: 40px 0;
+    }
+
+    .btn {
+        width: 100%; /* Tombol melebar penuh di layar HP */
+        max-width: 300px;
+        height: 100px;
+    }
+}
+
+/* HP Kecil (Lebar maksimal 480px) */
+@media screen and (max-width: 480px) {
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .profile-glass {
+        width: 100%; /* Box profil melebar penuh */
+        padding: 20px;
+    }
+
+    .info-row {
+        flex-direction: column; /* Info Row (Email, Role) jadi tumpuk vertical */
+        gap: 4px;
+    }
+    
+    .info-row p {
+        text-align: left;
+    }
+}

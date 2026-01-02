@@ -86,3 +86,33 @@ body {
     transform: translateY(0);
   }
 }
+
+
+/* Untuk layar Tablet/HP (Lebar maksimal 480px) */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 20px; 
+
+    .login-box {
+        width: 100%; 
+        max-width: 350px;
+        padding: 24px 20px;
+    }
+
+    .login-box h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Untuk HP yang sangat kecil (Lebar maksimal 320px) */
+@media screen and (max-width: 320px) {
+    .login-box {
+        padding: 20px 15px;
+    }
+    
+    .login-box button, 
+    .login-box input {
+        padding: 10px;
+    }
+}
+}
