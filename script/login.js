@@ -1,6 +1,5 @@
 // login function
-
-const API_URL = "https://script.google.com/macros/s/AKfycbzDT86qsYj3cg9oiiFb1wjh2gOG8NcFVWol2YeZnA9PgPjA_4ysOujo7BM190PFZ2xT/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycby1b1tNb0uYXzlVytxiSPdvhj_AsX9xZhodbJg3f45CQs_oSR7Yv4XM4D7U_FKkotDU/exec";
 
 function login() {
   const email = document.getElementById("email").value;

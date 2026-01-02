@@ -2,28 +2,25 @@
 const user = JSON.parse(localStorage.getItem("users"));
 
 if (!user || !user.success) {
-  // belum login → balik ke halaman login
   window.location.href = "../index.html";
 }
+
 
 // ================= ON LOAD =================
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ===== HEADER =====
   document.getElementById("username").innerText = user.nama;
 
-  // ===== PROFILE =====
   document.getElementById("profileName").innerText = user.nama;
   document.getElementById("profileEmail").innerText = `Email: ${user.email}`;
   document.getElementById("profileRole").innerText = `Role: ${user.role}`;
 
-  // ===== DATETIME (SEKALI SAJA) =====
   document.getElementById("datetime").innerText =
     new Date().toLocaleString();
 
-  // default view
   showHome();
 });
+
 
 // ================= NAV =================
 function showHome() {
@@ -42,6 +39,7 @@ function showProfile() {
   document.querySelector(".nav li:nth-child(2)").classList.add("active");
 }
 
+
 // ================= LOGOUT =================
 function logout() {
   localStorage.removeItem("users");
@@ -49,56 +47,56 @@ function logout() {
 }
 
 
-const API_URL = "https://script.google.com/macros/s/AKfycbzDT86qsYj3cg9oiiFb1wjh2gOG8NcFVWol2YeZnA9PgPjA_4ysOujo7BM190PFZ2xT/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycby1b1tNb0uYXzlVytxiSPdvhj_AsX9xZhodbJg3f45CQs_oSR7Yv4XM4D7U_FKkotDU/exec";
 
 const btnCheckIn = document.getElementById("btnCheckIn");
 const btnCheckOut = document.getElementById("btnCheckOut");
 const users = JSON.parse(localStorage.getItem("users"));
 
-// pastikan user login
 if (!users) {
   alert("Silahkan login dulu!");
   window.location.href = "../index.html";
 }
 
+
 // ================== Check In ==================
 btnCheckIn.addEventListener("click", () => {
-  if (!users) return;
-
-  fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: users.email, nama: users.nama, action: "checkin" })
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log("Check-in response:", data);
-      alert(data.message);
-      if (data.success) btnCheckIn.disabled = true;
-    })
-    .catch(err => {
-      console.error("Check-in error:", err);
-      alert("Gagal koneksi API");
-    });
+    if (!users) return;
+    processAttendance("checkin", btnCheckIn);
 });
+
 
 // ================== Check Out ==================
 btnCheckOut.addEventListener("click", () => {
-  if (!users) return;
+    if (!users) return;
+    processAttendance("checkout", btnCheckOut);
+});
 
-  fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: users.email, nama: users.nama, action: "checkout" })
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log("Check-out response:", data);
-      alert(data.message);
-      if (data.success) btnCheckOut.disabled = true;
+
+// Fungsi Global untuk memproses API
+function processAttendance(type, button) {
+    const originalText = button.innerText;
+    button.innerText = "Processing...";
+    button.disabled = true;
+
+    fetch(API_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({
+            email: users.email,
+            nama: users.nama,
+            action: type
+        })
+    })
+    .then(() => {
+        alert(`${type.toUpperCase()} Berhasil terkirim!`);
+        button.innerText = originalText;
+        button.style.backgroundColor = "#ccc";
     })
     .catch(err => {
-      console.error("Check-out error:", err);
-      alert("Gagal koneksi API");
+        console.error("Error:", err);
+        alert("Terjadi kesalahan koneksi");
+        button.disabled = false;
+        button.innerText = originalText;
     });
-});
+}
