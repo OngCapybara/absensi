@@ -1,0 +1,70 @@
+<!-- ===================== index.html ===================== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Attendance System</title>
+  <link rel="stylesheet" href="../styles/styles.css" />
+</head>
+<body>
+
+  <aside class="sidebar">
+    <h2>ABSENSI APP</h2>
+    <ul class="nav">
+      <li class="active" onclick="showHome()">Home</li>
+      <li onclick="showProfile()">Profile</li>
+      <li onclick="logout()">Logout</li>
+    </ul>
+  </aside>
+
+  <main class="main">
+    <div class="header">
+      <h1>Attendance</h1>
+      <p>
+        Hello, <strong id="username">User</strong> •
+        <span id="datetime"></span>
+      </p>
+    </div>
+
+    <!-- HOME -->
+    <section class="home" id="homeSection">
+      <button class="btn checkin" id="btnCheckIn">Check In</button>
+      <button class="btn checkout" id="btnCheckOut">Check Out</button>
+    </section>
+
+
+    <!-- PROFILE -->
+    <section class="profile" id="profileSection" style="display:none;">
+      <div class="profile-glass">
+        <div class="profile-header">
+          <img
+            src="https://i.pravatar.cc/150"
+            alt="avatar"
+            class="profile-avatar"
+          />
+          <div class="profile-text">
+            <h3 id="profileName">Nama User</h3>
+            <span id="profileRole">User</span>
+          </div>
+        </div>
+
+        <div class="profile-body">
+          <div class="info-row">
+            <span>Email</span>
+            <p id="profileEmail">-</p>
+          </div>
+
+          <div class="info-row">
+            <span>Status</span>
+            <p class="active">Active</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+  <script src="../script/script.js"></script>
+</body>
+</html>
